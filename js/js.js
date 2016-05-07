@@ -76,6 +76,14 @@
 	 		itemsMobile : false, 
 	 		loop:true
 		});
-		
+		$('.footer-nav #toTop').on('click', function () {
+    		$('body').velocity("scroll",{duration: 800});
+  		});
+		$('.footer-nav #toPhoto').on('click', function () {
+    		$('#photo').velocity("scroll", { duration: 800});
+  		});
+		$('.footer-nav #toBlog').on('click', function () {
+    		$('#blog').velocity("scroll", { duration: 800});
+  		});
 	});
 }(jQuery));
