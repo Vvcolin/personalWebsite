@@ -2,9 +2,57 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Xiao555 | Home</title>
+		<title>Xiao555 | Login</title>
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="js/jquery-1.12.3.min.js" ></script>
+		<style type="text/css">
+			.footer {
+				position: absolute;
+				bottom: 0
+			}
+
+			.main {
+				width: 100%;
+				position: fixed;
+				top: 0;
+				bottom: 30px;
+				background-color: rgba(90,67,124,.9); 
+			}
+
+			.login {
+				position: absolute;
+				width: 20%;
+				margin-left: 50%;
+				transform: translateX(-50%);
+				margin-top: 200px;
+				background-color: rgba(90,67,124,.9);
+				padding: 20px 20px;
+				width: 400px;
+				height: 200px;
+			}
+			input[type='submit'] {
+				display: inline-block;
+				background-color: transparent;
+				text-align: center;
+				margin-top: 30px;
+				margin-left: 50%;
+				transform: translateX(-50%);
+				border: 3px solid #fff;
+				line-height: 1em;
+				padding: 1em 2em;
+				color: #fff;
+				transition: transform .2s ease-in, background-color .2s ease-in;
+				cursor: pointer;
+			}
+			input[type='submit']:hover {
+				background-color: rgba(0,0,0,.1);		
+			}
+			.msg{
+				width: 100%;
+				text-align: center;
+				margin-top: 10px;
+			}
+		</style>
 	</head>
 	<body>
 		<header class="intro">
@@ -61,116 +109,31 @@
 				</div>
 			</div>
 		</header>
-		<main id="main">
-			<section id="photo" class="photo">
-				<svg class="svg-angle" viewBox="0 0 50 50" preserveAspectRatio="none">
-					<polygon points="50,0 0,50 50,50" fill="rgba(90,67,124,.9)"></polygon>
-				</svg>
-				<h2 class="headline-cover">photo</h2>
-				<div class="row">
-					<div class="owl-carousel owl-theme owl-loaded">
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1622.jpg"/>
-					  				</div>
-					  			</div><div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1624.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1628.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1630.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1631.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1632.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1635.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1637.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1641.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1649.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1650.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1653.jpg"/>
-					  				</div>
-					  			</div>
-					  			<div class="owl-item">
-					  				<div class="flat3D">
-					  					<img src="img/IMG_1658.jpg"/>
-					  				</div>
-					  			</div>
-					  		
-					</div>
-				</div>
-			</section>
-			<section id="blog" class="blog">
-				<svg class="svg-angle" viewBox="0 0 50 50" preserveAspectRatio="none">
-					<polygon points="0,50 50,50 0,0" fill="inherit"></polygon>
-				</svg>
-				<h2 class="headline-vertical">blog</h2>
-				<div class="row">
-					<% for(var i=0;i < blogs.length;i++){ %>
-					<article class="post-summary">
-						<time itemprop="dataPublished" pubdate datetime="05/07/2016" title="May 07,2016">
-							<span class="date"><%=blogs[i].date %></span>
-							<span class="year"><%=blogs[i].year %></span>
-						</time>
-						<a href="#" class="blog-link"><%=blogs[i].title %></a>
-					</article>
-					<% } %>
-					<a href="#" class="button">Visit Blog</a>
-				</div>
-			</section>
+		<main class="main">
+			<form class="login" method="post">
+				请输入登录密码：
+				<input id="pwd" type="password" name="password"><br />
+				<input id="login" type="submit" value="Login">
+				<% if (success) { %>
+				  <div class="msg"><%= success %></div>
+				<% } %>
+				<% if (error) { %>
+				  <div class="msg"><%= error %> </div>
+				<% } %>
+			</from>
 		</main>
 		<footer class="footer" role="contentinfo">
 			<svg class="svg-angle" viewBox="0 0 50 50" preserveAspectRatio="none">
 				<polygon points="50,0 0,50 50,50" fill="inherit"></polygon>
 			</svg>
 			<nav class="footer-nav">
-				<a id="toTop" >home</a>
-				<a id="toPhoto" >photo</a>
-				<a id="toBlog" >blog</a>
-				<a id="toLogin" href="/login">Admin</a>
+				<a id="toHome" href="../">Back To Home</a>
 			</nav>
 			<small class="text-center">
 				@Xiao555 2016
 			</small>
 		</footer>
 		<script type="text/javascript" src="js/velocity.js" ></script>
-		<script type="text/javascript" src="js/js.js" ></script>
+		<script type="text/javascript" src="js/login.js" ></script>
 	</body>
 </html>
