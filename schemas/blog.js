@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var markdown = require('markdown').markdown
 
 var BlogSchema = new mongoose.Schema({
 	title: String,
@@ -17,7 +18,19 @@ BlogSchema.statics = {
 			.find({})
 			.sort('time')
 			.exec(cb)
+	},
+	findOne: function(title,cb) {
+		this.find({"title": title},function(err,doc){
+			if(err) return cb(err);
+			if(doc) {
+//				doc.content = markdown.toHTML(doc.content);
+				cb(null, doc);
+			}
+		});
+
+
 	}
+
 }
 
 module.exports = BlogSchema

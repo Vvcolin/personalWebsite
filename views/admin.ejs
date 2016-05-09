@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Xiao555 | Login</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-1.12.3.min.js" ></script>
+		<style type="text/css">
+			.footer {
+				position: relative;
+			}
+			html {
+				overflow-y:scroll;
+			}
+			header {
+				position: fixed;
+			}
+			.main {
+				width: 100%;
+				height: 100%;
+				position: relative;
+				background-color: rgba(90,67,124,.9); 
+
+			}
+
+			.main:after{
+				content: ".";
+			    display: block;
+			    clear: both;
+			    visibility: hidden;
+			    line-height: 0;
+			    height: 0;
+			}
+
+			.upload {
+				position: absolute;
+				width: 80%;
+				margin-left: 10%;
+				margin-top: 50px;
+				background-color: rgba(90,67,124,.9);
+				padding: 20px 20px;
+			}
+			input[type='submit'] {
+				position: absolute;
+				top: 20px;
+				right: .1%;
+				display: inline-block;
+				background-color: transparent;
+				text-align: center;
+				transform: translateX(-50%);
+				border: 3px solid #fff;
+				line-height: 1em;
+				padding: 1em 1em;
+				color: #fff;
+				transition: transform .2s ease-in, background-color .2s ease-in;
+				cursor: pointer;
+			}
+			input[type='submit']:hover {
+				background-color: rgba(0,0,0,.1);		
+			}
+			.msg{
+				width: 100%;
+				text-align: center;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="intro">
+			<div class="intro-fixed">
+				
+				<div class="row">
+					<svg version="1.1" id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="80px" y="0px" viewBox="50 0 250 400" width="250px" height="400px" xml:space="preserve">
+					<!-- face -->
+					<path class="svg-no" d="
+					M150 80 H200 L250 100 L270 150 L250 300 L200 320 H150 L100 300 L80 150 L100 100 L150 80 Z
+					" style="stroke:#fff;stroke-width: 5;"></path>					
+					<!-- hair -->
+					<path fill="#fff" d="M100 100 L140 150 L140 130 L190 160 L185 135 L240 155 L220 120 L270 150 L250 100 L200 80 L150 80Z" style="stroke:#fff;stroke-width: 5;"></path>
+					<!-- ear-->
+					<path class="svg-no" d="
+					M85 190 H66 V240 L93 250 Z
+					" style="stroke:#fff;stroke-width: 5;"></path>
+					<path class="svg-no" d="
+					M265 190 H284 V240 L257 250 Z
+					" style="stroke:#fff;stroke-width: 5;"></path>					
+					<!-- eyebrow -->
+					<path class="svg-no left-eyebrow" d="
+					M120 170 H150 Z
+					" style="stroke:#fff;stroke-width: 5;"></path>
+					<path class="right-eyebrow" class="svg-no" d="
+					M200 170 H230 Z
+					" style="stroke:#fff;stroke-width: 5;"></path>
+					<!-- eyes -->
+					<circle class="left-eye" cx="135" cy="200" r="10" fill="#fff"></circle>
+					<circle class="right-eye" cx="215" cy="200" r="10" fill="#fff"></circle>
+					<!-- nose -->
+					<path d="M160 240 H190" style="stroke:#fff;stroke-width: 5;"></path>			
+					<!-- MOUSE -->
+					<path d="M150 290 L200 285 Z" style="stroke:#fff;stroke-width: 5;"></path>					
+					<!-- SHOULDERS -->
+					<path d="M135 330 L50 350"  style="stroke:#fff;stroke-width: 5;"></path>
+					<path d="M215 330 L300 350"  style="stroke:#fff;stroke-width: 5;"></path>
+					<path class="svg-no" d="M120 335 
+					C 200 390 200 390 230 335
+					"  style="stroke:#fff;stroke-width: 5;"></path>
+					<!-- neck -->
+					<path class="svg-no" d="M130 310 L140 350" style="stroke:#fff;stroke-width: 5;"></path>
+					<path class="svg-no" d="M220 310 L210 350" style="stroke:#fff;stroke-width: 5;"></path>
+					</svg>
+					<article class="head-article">
+						<h1>Xiao555</h1>
+						<h2>A SOPHOMORE STUDENT IN XIDIAN UNIVERSITY</h2>
+						<p>我是一个前端开发者,现在正在努力学好它.我选择它的原因是我认为他是技术与艺术的结合.</p>
+						<p>除了前端之外,我还喜欢打篮球,会画充满灵气的山水画,喜欢摄影，有自己的一台佳能700D,虽然是入门级的,但是我希望能用它记录生活的点滴.</p>
+						<a class="button" href="mailto:zhangruiwu32@gmail.com">
+							<span>Let's Talk</span>
+						</a>
+					</article>
+				</div>
+			</div>
+		</header>
+		<main class="main">
+			<form class="upload" method="post">
+				<span>标题：</span><input id="title" type="text" name="title" style="width: 70%;"><br />
+				<span>内容：</span><br />
+				<textarea name="content" id="content" style="width: 80%;" rows="20"></textarea>
+				<input id="upload" type="submit" value="upload">
+				<% if (success) { %>
+				  <div class="msg"><%= success %></div>
+				<% } %>
+				<% if (error) { %>
+				  <div class="msg"><%= error %> </div>
+				<% } %>
+			</from>
+		</main>
+		<footer class="footer" role="contentinfo">
+			<svg class="svg-angle" viewBox="0 0 50 50" preserveAspectRatio="none">
+				<polygon points="50,0 0,50 50,50" fill="inherit"></polygon>
+			</svg>
+			<nav class="footer-nav">
+				<a id="toHome" href="../">Back To Home</a>
+			</nav>
+			<small class="text-center">
+				@Xiao555 2016
+			</small>
+		</footer>
+		<script type="text/javascript" src="js/velocity.js" ></script>
+		<script type="text/javascript" src="js/login.js" ></script>
+	</body>
+</html>

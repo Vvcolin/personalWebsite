@@ -3,20 +3,7 @@ var router = express.Router();
 var marked = require('marked');
 var Blog = require('../models/blog')
 var moment = require('../public/js/moment')
-
-var blog1 = new Blog;
-blog1.title = '23333';
-// blog1.categories = '23333';
-// blog1.tags = ['2333','34444'];
-blog1.time = moment().format('L'); //01/01/2016
-blog1.timecn = moment().format('LL');//May 8,2016
-blog1.date = blog1.time.slice(0,5);
-blog1.year = blog1.time.slice(6);
-blog1.content = '这是内容';
-blog1.save(function(err) {
-	if (err) throw err;
-})
-
+var markdown = require('markdown').markdown;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,16 +17,29 @@ router.get('/', function(req, res, next) {
   	
 });
 
+router.get('/blog',function(req,res, next) {
+	Blog.fetch(function(err,blogs){
+		if (err) {
+			console.log(err)
+		}
+		console.log(blogs)
+		res.render('blog',{blogs: blogs})
+	})
+});
 
+router.get('/login',checkNotLogin);
 router.get('/login', function(req, res, next) {
 	res.render('login',{
   	success: req.flash('success').toString(),
     error: req.flash('error').toString()
   });
 });
-
+router.get('/admin',checkLogin);
 router.get('/admin', function(req, res, next) {
-  res.render('login');
+  res.render('admin',{
+  	success: req.flash('success').toString(),
+    error: req.flash('error').toString()
+  });
 });
 
 router.post('/login', function(req, res, next) {
@@ -56,4 +56,47 @@ router.post('/login', function(req, res, next) {
 	} 
 	
 });
+
+router.post('/admin',function(req,res, next) {
+	var blog = new Blog;
+		blog.title = req.body.title,
+		blog.content = markdown.toHTML(req.body.content); 
+		blog.time = moment().format('L'), //01/01/2016
+		blog.timecn = moment().format('LL'),//May 8,2016
+		blog.date = blog.time.slice(0,5),
+		blog.year = blog.time.slice(6);
+	blog.save(function(err) {
+	if (err) throw err;
+	else {
+		router.get('/blog/:title',function(req,res,next) {
+			Blog.findOne(req.params.title,function(err,doc){
+			if (err) {
+				console.log(err)
+			}
+			console.log('doc :');
+			console.log(doc);
+			res.render('blogpage',{blog: doc});
+		})
+		})		
+		req.flash('success','上传成功！');
+		return res.redirect('/');
+	}
+	});	
+})
+
+function checkLogin(req, res, next) {
+    if (!req.session.user) {
+      	req.flash('error', '未登录!'); 
+      	return res.redirect('/login');
+    }
+    next();
+}
+
+function checkNotLogin(req, res, next) {
+    if (req.session.user) {
+      	req.flash('error', '已登录!'); 
+      	return res.redirect('/admin');//返回之前的页面
+    }
+    next();
+}
 module.exports = router;
