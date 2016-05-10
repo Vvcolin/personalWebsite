@@ -5,8 +5,4 @@ db.on('error',function(err) {
 });
 var BlogSchema = require('../schemas/blog')
 var Blog = db.model('Blog',BlogSchema)
-Blog.remove({},function(err,data) {
-	console.log('Delect All');
-	console.log('data');
-})
 module.exports = Blog
