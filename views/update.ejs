@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Xiao555 | Login</title>
-		<link rel="stylesheet" href="css/style.css" />
-		<script type="text/javascript" src="js/jquery-1.12.3.min.js" ></script>
+		<link rel="stylesheet" href="../../css/style.css" />
+		<script type="text/javascript" src="../../js/jquery-1.12.3.min.js" ></script>
 		<style type="text/css">
 			.footer {
 				position: relative;
@@ -14,9 +14,6 @@
 			}
 			header {
 				position: fixed;
-			}
-			th ,td{
-				padding: 3px 5px;
 			}
 			.main {
 				width: 100%;
@@ -33,34 +30,6 @@
 			    visibility: hidden;
 			    line-height: 0;
 			    height: 0;
-			}
-
-			.main-content {
-				position: absolute;
-
-				top: 100px;
-				left: 50%;
-				transform: translateX(-50%);
-			}
-
-			.main-content a {
-				text-decoration: none;
-				background-color: transparent;
-				-webkit-text-decoration-skip: objects;
-				color: #fff;
-				background-color: blue;
-				opacity: .8;
-				padding: 3px 5px;
-				border-radius: 4px;
-			}
-
-			.del {
-				background-color: red;
-				border: 1px solid red;
-				cursor: pointer;
-				opacity: .8;
-				color: #fff;
-				border-radius: 4px;
 			}
 
 			.upload {
@@ -152,26 +121,18 @@
 			</div>
 		</header>
 		<main class="main">
-			<div class="main-content">
-				<table>
-					<tr>
-						<th>标题</th>
-						<th>创建时间</th>
-						<th>更新时间</th>
-						<th>更新</th>
-						<th>删除</th>
-					</tr>
-					<% for(var i=0;i < blogs.length;i++){ %>
-					<tr>
-						<td><%=blogs[i].title %></td>
-						<td><%=blogs[i].time %></td>
-						<td><%=blogs[i].updatetime %></td>
-						<td><a href="/admin/update/<%=blogs[i].title %>">更新</a></td>
-						<td><button class="del" type="button" data-title="<%=blogs[i].title %>">删除</button></td>
-					</tr>
-					<% } %>
-				</table>
-			</div>
+			<form class="upload" method="post">
+				<span>标题：<%=blog.title %></span><br />
+				<span>内容：</span><br />
+				<textarea name="content" id="content" style="width: 80%;" rows="20"></textarea>
+				<input id="upload" type="submit" value="upload">
+				<% if (success) { %>
+				  <div class="msg"><%= success %></div>
+				<% } %>
+				<% if (error) { %>
+				  <div class="msg"><%= error %> </div>
+				<% } %>
+			</from>
 		</main>
 		<footer class="footer" role="contentinfo">
 			<svg class="svg-angle" viewBox="0 0 50 50" preserveAspectRatio="none">
@@ -184,8 +145,7 @@
 				@Xiao555 2016
 			</small>
 		</footer>
-		<script type="text/javascript" src="js/velocity.js" ></script>
-		<script type="text/javascript" src="js/login.js" ></script>
-		<script type="text/javascript" src="js/admin.js"></script>
+		<script type="text/javascript" src="../../js/velocity.js" ></script>
+		<script type="text/javascript" src="../../js/login.js" ></script>
 	</body>
 </html>

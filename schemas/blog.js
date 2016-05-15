@@ -9,7 +9,8 @@ var BlogSchema = new mongoose.Schema({
 	timecn: String,
 	year: String,
 	date: String,
-	content: String
+	content: String,
+	updatetime: String
 })
 
 BlogSchema.statics = {
