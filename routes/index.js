@@ -143,6 +143,13 @@ router.post('/login', function(req, res, next) {
 	} 
 	
 });
+router.get('/upload',checkLogin);
+router.get('/upload',function(req,res,next) {
+	res.render('upload',{
+			  	success: req.flash('success').toString(),
+			    error: req.flash('error').toString()
+			  });
+})
 
 /* POST upload page. */
 router.post('/upload',function(req,res, next) {

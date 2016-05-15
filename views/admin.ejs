@@ -43,7 +43,7 @@
 				transform: translateX(-50%);
 			}
 
-			.main-content a {
+			.main-content .update {
 				text-decoration: none;
 				background-color: transparent;
 				-webkit-text-decoration-skip: objects;
@@ -64,12 +64,19 @@
 			}
 
 			.upload {
-				position: absolute;
-				width: 80%;
-				margin-left: 10%;
-				margin-top: 50px;
-				background-color: rgba(90,67,124,.9);
-				padding: 20px 20px;
+				position: relative;
+				top: 20px;
+				left: 50%;
+				display: inline-block;
+				background-color: transparent;
+				text-align: center;
+				transform: translateX(-50%);
+				border: 3px solid #fff;
+				line-height: 1em;
+				padding: 1em 1em;
+				color: #fff;
+				transition: transform .2s ease-in, background-color .2s ease-in;
+				cursor: pointer;
 			}
 			input[type='submit'] {
 				position: absolute;
@@ -162,15 +169,16 @@
 						<th>删除</th>
 					</tr>
 					<% for(var i=0;i < blogs.length;i++){ %>
-					<tr>
+					<tr class="item-title-<%=blogs[i].title %>">
 						<td><%=blogs[i].title %></td>
 						<td><%=blogs[i].time %></td>
 						<td><%=blogs[i].updatetime %></td>
-						<td><a href="/admin/update/<%=blogs[i].title %>">更新</a></td>
+						<td><a class="update" href="/admin/update/<%=blogs[i].title %>">更新</a></td>
 						<td><button class="del" type="button" data-title="<%=blogs[i].title %>">删除</button></td>
 					</tr>
 					<% } %>
 				</table>
+				<a href="/upload" class="upload">上传</a>
 			</div>
 		</main>
 		<footer class="footer" role="contentinfo">
