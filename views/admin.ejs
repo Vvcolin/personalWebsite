@@ -36,11 +36,17 @@
 			}
 
 			.main-content {
-				position: absolute;
-
+				position: relative;
+				width: 80%;
 				top: 100px;
 				left: 50%;
 				transform: translateX(-50%);
+				text-align: center;
+				height: 60%;
+			}
+			.main-content table {
+				width: 100%;
+				overflow-y:scroll;
 			}
 
 			.main-content .update {
@@ -64,13 +70,13 @@
 			}
 
 			.upload {
-				position: relative;
-				top: 20px;
+				display: block;
+				width: 20%;
 				left: 50%;
-				display: inline-block;
+				transform: translateX(-50%);
+				position: relative;
 				background-color: transparent;
 				text-align: center;
-				transform: translateX(-50%);
 				border: 3px solid #fff;
 				line-height: 1em;
 				padding: 1em 1em;
@@ -178,8 +184,8 @@
 					</tr>
 					<% } %>
 				</table>
-				<a href="/upload" class="upload">上传</a>
 			</div>
+			<a href="/upload" class="upload">上传</a>
 		</main>
 		<footer class="footer" role="contentinfo">
 			<svg class="svg-angle" viewBox="0 0 50 50" preserveAspectRatio="none">

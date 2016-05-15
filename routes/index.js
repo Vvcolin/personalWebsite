@@ -117,7 +117,7 @@ router.delete('/admin/blog',checkLogin);
 router.delete('/admin/blog',function(req,res, next){
 	var _title = req.query.title;
 	if(_title){
-		Blog.remove({title: _title},function(err, movie){
+		Blog.remove({title: _title},function(err, doc){
 			if(err) {
 				console.log(err);
 				res.json({success: 0});
